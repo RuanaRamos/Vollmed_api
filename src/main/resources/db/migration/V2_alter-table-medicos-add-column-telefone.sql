@@ -1,0 +1,1 @@
+alter table madicos add telefone varchar(20) not null;
