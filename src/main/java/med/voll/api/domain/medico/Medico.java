@@ -1,4 +1,4 @@
-package med.voll.api.medico;
+package med.voll.api.domain.medico;
 
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.endereco.Endereco;
+import med.voll.api.domain.endereco.Endereco;
 
 
 @Entity(name = "Medico")
@@ -45,7 +45,7 @@ public class Medico {
 
     }
 
-    public void atualizarInformacoes(@Valid DadosAtualizacaoMedicos dados) {
+    public void atualizarInformacoes(@Valid DadosAtualizacaoMedico dados) {
 
         if (dados.nome() != null) {
             this.nome = dados.nome();
