@@ -40,5 +40,4 @@ public class PacienteController {
         var paciente = repository.getReferenceById(id);
         paciente.excluir();
     }
-
 }

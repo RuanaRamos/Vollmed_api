@@ -29,6 +29,7 @@ public class Paciente {
 
     public Paciente(DadosCadastroPaciente dados) {
 
+        this.ativo = true;
             this.nome = dados.nome();
             this.telefone = dados.telefone();
             this.email = dados.email();
