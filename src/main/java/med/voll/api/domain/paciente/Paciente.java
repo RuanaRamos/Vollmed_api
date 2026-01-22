@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import med.voll.api.domain.endereco.Endereco;
 
 @Entity(name = "Paciente")
-@Table(name = "pacientes")
+@Table(name = "paciente")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,13 +28,11 @@ public class Paciente {
         private Boolean ativo;
 
     public Paciente(DadosCadastroPaciente dados) {
-
-
-            this.nome = dados.nome();
-            this.telefone = dados.telefone();
-            this.email = dados.email();
-            this.endereco = new Endereco(dados.endereco());
-            this.cpf = dados.cpf();
+        this.nome = dados.nome();
+        this.telefone = dados.telefone();
+        this.email = dados.email();
+        this.endereco = new Endereco(dados.endereco());
+        this.cpf = dados.cpf();
         this.ativo = true;
 
 
@@ -53,7 +51,6 @@ public class Paciente {
             }
         }
 
-        public void excluir() {
-        this.ativo = false;
+        public void excluir() {this.ativo = false;
         }
     }

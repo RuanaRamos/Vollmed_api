@@ -15,10 +15,12 @@ import java.util.Date;
 @Service
 public class TokenService {
 
+    private String secret;
+
     public String gerarToken(Usuario usuario) {
 
         try {
-            var algoritimo = Algorithm.HMAC256("12345678");
+            var algoritimo = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer("API Voll.med")
                     .withSubject(usuario.getLogin())
