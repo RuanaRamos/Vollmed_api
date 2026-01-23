@@ -38,12 +38,19 @@ public class SecurityFilter extends OncePerRequestFilter {
     }
 
     private String recuperarToken(HttpServletRequest request) {
-        var authorizationHeader = request.getHeader("Authorization");
-        if (authorizationHeader != null) {
-            return authorizationHeader.replace("Bearer ", "");
-        }
+        String header = request.getHeader("Authorization");
+        if (header == null) return null;
 
-        return null;
+        header = header.trim();
+        if (!header.startsWith("Bearer ")) return null;
+
+        String token = header.substring(7).trim();
+        if (token.isEmpty()) return null;
+
+        // JWT sempre tem 2 pontos: header.payload.signature
+        if (!token.contains(".")) return null;
+
+        return token;
     }
 
 }
