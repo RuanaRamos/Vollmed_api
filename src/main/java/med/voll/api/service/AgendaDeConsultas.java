@@ -1,6 +1,10 @@
-package med.voll.api.domain.consulta;
+package med.voll.api.service;
 
 import med.voll.api.domain.ValidacaoException;
+import med.voll.api.domain.consulta.Consulta;
+import med.voll.api.domain.consulta.ConsultaRepository;
+import med.voll.api.domain.consulta.DadosAgendamentoConsulta;
+import med.voll.api.domain.consulta.DadosDetalhamentoConsulta;
 import med.voll.api.domain.consulta.validacoes.ValidadorAgendamentoDeConsulta;
 import med.voll.api.domain.medico.Medico;
 import med.voll.api.domain.medico.MedicoRepository;
@@ -43,7 +47,7 @@ public class AgendaDeConsultas {
         if (medico == null){
             throw new ValidacaoException("Nao existe medico disponivel nessa data!");
         }
-        var consulta = new Consulta(null, medico, paciente, dados.data());
+        var consulta = new Consulta(null, medico, paciente, dados.data(), null);
         consultaRepository.save(consulta);
 
         return new DadosDetalhamentoConsulta(consulta);
