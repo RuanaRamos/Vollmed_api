@@ -1,21 +1,19 @@
 package med.voll.api.domain.consulta;
 
+import med.voll.api.domain.medico.Medico;
+import med.voll.api.domain.paciente.Paciente;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.domain.consulta.cancelamento.MotivoCancelamento;
-import med.voll.api.domain.medico.Medico;
-import med.voll.api.domain.paciente.Paciente;
+
 
 import java.time.LocalDateTime;
 
 
 @Table(name = "consultas")
-@Entity
+@Entity(name = "Consulta")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,7 +22,7 @@ public class Consulta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "medico_id")
@@ -36,12 +34,12 @@ public class Consulta {
 
     private LocalDateTime data;
 
+    @Column(name = "motivo_cancelamento")
     @Enumerated(EnumType.STRING)
     private MotivoCancelamento motivoCancelamento;
 
-
     public void cancelar(MotivoCancelamento motivo) {
         this.motivoCancelamento = motivo;
-
     }
+
 }

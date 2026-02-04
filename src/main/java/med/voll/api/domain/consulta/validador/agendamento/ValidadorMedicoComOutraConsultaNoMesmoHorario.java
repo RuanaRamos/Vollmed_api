@@ -1,4 +1,4 @@
-package med.voll.api.domain.consulta.validacoes;
+package med.voll.api.domain.consulta.validador.agendamento;
 
 import med.voll.api.domain.ValidacaoException;
 import med.voll.api.domain.consulta.ConsultaRepository;
@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class ValidadorMedicoComOutraConsulta implements ValidadorAgendamentoDeConsulta{
+public class ValidadorMedicoComOutraConsultaNoMesmoHorario implements ValidadorAgendamentoDeConsulta{
 
     @Autowired
     private ConsultaRepository repository;
 
     public void validar(DadosAgendamentoConsulta dados){
-        var medicoPossueOutraConsultaNoMesmoHorario = repository.existsByMedicoIdAndData(dados.idMedico(), dados.data());
+        var medicoPossueOutraConsultaNoMesmoHorario = repository.existsByMedicoIdAndDataAndMotivoCancelamentoIsNull(dados.idMedico(), dados.data());
         if (medicoPossueOutraConsultaNoMesmoHorario){
             throw new ValidacaoException("Medico possue outra consulta nesse mesmo horario");
         }
