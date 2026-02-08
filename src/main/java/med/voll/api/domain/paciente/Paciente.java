@@ -7,6 +7,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.domain.endereco.Endereco;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity(name = "Paciente")
 @Table(name = "pacientes")
@@ -25,6 +27,7 @@ public class Paciente {
         @Embedded
         private Endereco endereco;
 
+        @JdbcTypeCode(SqlTypes.TINYINT)
         private Boolean ativo;
 
     public Paciente(DadosCadastroPaciente dados) {
